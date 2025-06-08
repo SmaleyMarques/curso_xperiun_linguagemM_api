@@ -1,0 +1,139 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 24
+          },
+          "nodeIndex": "Binário",
+          "nodeLineageTag": "75cfd065-e2af-4181-ab36-ed525fc36536",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 284,
+            "y": 36
+          },
+          "nodeIndex": "Lista",
+          "nodeLineageTag": "ee46c557-24de-4eb4-ae6d-4b175013865f",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 568,
+            "y": 24
+          },
+          "nodeIndex": "Lógico",
+          "nodeLineageTag": "1bb64900-9ce9-4a41-a422-998dc44e0d77",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 852,
+            "y": 24
+          },
+          "nodeIndex": "Nulo",
+          "nodeLineageTag": "f92a1925-8182-44f6-adf4-30270e797b9c",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1136,
+            "y": 24
+          },
+          "nodeIndex": "Número",
+          "nodeLineageTag": "eba972c6-771f-41ee-ae8c-3c80a126f1da",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1420,
+            "y": 24
+          },
+          "nodeIndex": "Registro",
+          "nodeLineageTag": "32011e69-4845-444e-9d55-eb02f19b1290",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1704,
+            "y": 0
+          },
+          "nodeIndex": "Tabela",
+          "nodeLineageTag": "16158094-6e93-43c0-8671-c594134a3653",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1988,
+            "y": 24
+          },
+          "nodeIndex": "Temporal",
+          "nodeLineageTag": "1a2c1e33-c179-4f66-9bb6-a13ebac435fb",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2272,
+            "y": 24
+          },
+          "nodeIndex": "Texto",
+          "nodeLineageTag": "143ae241-1d32-43ab-a414-07080da253bc",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

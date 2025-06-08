@@ -1,0 +1,45 @@
+table Registro
+	lineageTag: 32011e69-4845-444e-9d55-eb02f19b1290
+
+	column Name
+		dataType: string
+		lineageTag: fa051022-be00-4f66-9d14-a8093066148b
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: string
+		lineageTag: 47dae811-745b-4df7-b251-a05b04424c3e
+		summarizeBy: none
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Registro = m
+		mode: import
+		queryGroup: Tipos_Estruturados
+		source =
+				let
+				    /*
+				    Conjunto de Chave e Valor;
+				    Identificado por: [];
+				    Capaz de armazenar qualquer estrutura inclusive Registros
+				    */
+				    Registro = [
+				    Funcionario = [ nome = "Smaley Marques", cargo = "Analista de Dados", data de admissão = #date(2020,09,21), centro de custo = 104],
+				    // Navegação:
+				    Nome = Funcionario[nome], // Chave[Chave_interna]
+				    // Inexistente_erro = Funcionario[Salário],
+				    Inexistente_vazio = Funcionario[Salário]?,
+				    Multicampos = Funcionario[[nome], [cargo]],
+				    Multicampos_inexistente = Funcionario[[nome], [cargo], [Salário]]?
+				]
+				in
+				    Registro
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Record
+

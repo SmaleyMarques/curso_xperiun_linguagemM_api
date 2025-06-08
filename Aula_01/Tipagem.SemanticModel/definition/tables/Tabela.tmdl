@@ -1,0 +1,74 @@
+table Tabela
+	lineageTag: 16158094-6e93-43c0-8671-c594134a3653
+
+	column Código
+		dataType: int64
+		formatString: 0
+		lineageTag: 6eda8f3e-e5c8-44f3-9750-98bfef827741
+		summarizeBy: sum
+		sourceColumn: Código
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nome
+		dataType: string
+		lineageTag: 15d92862-5a7f-4156-850f-9c903c787044
+		summarizeBy: none
+		sourceColumn: Nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column Telefone
+		dataType: string
+		lineageTag: 65577cae-f656-4927-8803-4c6ba8a4e79a
+		summarizeBy: none
+		sourceColumn: Telefone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Salário
+		dataType: double
+		lineageTag: 595e066e-6b4c-46ba-909a-de8fc4d26769
+		summarizeBy: sum
+		sourceColumn: Salário
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Tabela = m
+		mode: import
+		queryGroup: Tipos_Estruturados
+		source =
+				let
+				    /*
+				    Lista de Registros;
+				    Invocado a partir da função primária #table
+				    Capaz de armazenar qualquer estrutura inclusive Tabelas
+				    */
+				    Tabela = #table(
+				                    // { "Código", "Nome", "Telefone", "Salário"},
+				                    type table [Código = Int64.Type, Nome = text, Telefone = text, Salário = number],
+				                    {
+				                        {1, "Bob", "123-4567", 2000.50},
+				                        {2, "Jim", "234-5678", 1900},
+				                        {3, "John", "345-6789", 1200.25},
+				                        {4, "Jane", "456-7890", 4500.22}
+				                    }
+				
+				    ),
+				    // Navegação
+				    Navegação = [
+				        tabela = Tabela,
+				        linha = tabela{0},
+				        coluna = tabela[Nome],
+				        colunas = tabela[[Nome], [Telefone]],
+				        valor = tabela[Nome]{3}
+				    ]
+				in
+				    Tabela
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Tipagem"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a795b92b-aded-48bd-ad18-e4cb8a1cfd74"
+  }
+}

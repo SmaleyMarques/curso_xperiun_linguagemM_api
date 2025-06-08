@@ -1,0 +1,37 @@
+table Lógico
+	lineageTag: 1bb64900-9ce9-4a41-a422-998dc44e0d77
+
+	column Name
+		dataType: string
+		lineageTag: 0e30805e-2c3a-44e2-bc30-9511d783a715
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: string
+		lineageTag: 8c19b8f7-f08b-4558-897a-8be6e0a03c66
+		summarizeBy: none
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Lógico = m
+		mode: import
+		queryGroup: Tipos_Primitivos
+		source = ```
+				// Resultantes de operações de comparação
+				[
+				    verdeiro = true,
+				    falso = false,
+				    lógico_verdadeiro = Logical.From(1), // Qualquer valor diferente de 0
+				    lógico_falso = Logical.From(0) 
+				
+				]
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Record
+

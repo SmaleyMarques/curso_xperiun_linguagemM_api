@@ -1,0 +1,41 @@
+table Temporal
+	lineageTag: 1a2c1e33-c179-4f66-9bb6-a13ebac435fb
+
+	column Name
+		dataType: string
+		lineageTag: 1700f042-8f2b-4007-b9e8-cb5c037abc06
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: string
+		lineageTag: 40cdab79-5392-44c1-add1-55a52cfbe56c
+		summarizeBy: none
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Temporal = m
+		mode: import
+		queryGroup: Tipos_Primitivos
+		source =
+				// Invocado a partir das funções pirmárias #date, #time, #datetime, #datetimezone, #duration
+				[
+				    data = #date(2025,06,08),
+				    hora = #time(10,08,35),
+				    data_hora = #datetime(2025,06,08, 10,08,35),
+				    data_hora_cnt = data & hora,
+				    data_hora_fuso = #datetimezone(2025,06,08, 10,08,35,-3,00),
+				    data_extenso = Date.ToText(data, "dddd ""dia"" d ""de"" MMMM ""de"" yyyy"),
+				    data_extenso_ingles = Date.ToText(data, "MMMM d, yyyy ""day""", "en-US"),
+				    data_timestemp = DateTime.ToText(data_hora, "o", "en-US"), // muito usado em chamadas de API
+				    duração = #duration(2,3,1,20), // Dia:Hora:Minuto:Segundo
+				    duração_negativa = #duration(-2,3,1,20) // Dia:Hora:Minuto:Segundo
+				]
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Record
+
