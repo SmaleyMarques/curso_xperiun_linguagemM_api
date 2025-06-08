@@ -2,6 +2,7 @@
 
 Estratégias avançadas de integração e transformação de dados usando APIs e a Linguagem M.
 
+Obs.: Acessando códigos a partir de *.SemanticModel/.pbi/definition/tables/
 
 ## **Material do Curso:**
 
