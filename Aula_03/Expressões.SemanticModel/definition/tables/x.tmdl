@@ -1,0 +1,25 @@
+table x
+	lineageTag: 8f3f35f3-e395-4063-9390-fe6238d81f7c
+
+	column x
+		dataType: double
+		lineageTag: 73cdf340-7a5d-4aa1-8093-b9bb960d3885
+		summarizeBy: sum
+		sourceColumn: x
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition x = m
+		mode: import
+		source =
+				let
+				    Fonte = 10
+				in
+				    Fonte
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Number
+

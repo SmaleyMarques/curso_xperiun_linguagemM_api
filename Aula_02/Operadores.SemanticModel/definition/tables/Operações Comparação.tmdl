@@ -1,0 +1,37 @@
+table 'Operações Comparação'
+	lineageTag: 360eff65-e608-4d2b-9516-33ea366ed967
+
+	column Name
+		dataType: string
+		lineageTag: a06d662a-ee51-4ad4-9ee2-4f3f806c1e30
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: string
+		lineageTag: 25c6fa11-e96b-418b-a553-19ec20abb3f2
+		summarizeBy: none
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Operações Comparação' = m
+		mode: import
+		source =
+				[
+				    x = 2,
+				    y = 1,
+				    MaiorQue = x > y,
+				    MenorQue = x < y,
+				    MaiorIgual = x >= y,
+				    MenorIgual = x <= y,
+				    Igual = x = y, // Value.Equals(x, y)
+				    Diferente = x <> y
+				]
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Record
+

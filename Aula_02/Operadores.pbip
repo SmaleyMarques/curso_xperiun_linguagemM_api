@@ -3,7 +3,7 @@
   "artifacts": [
     {
       "report": {
-        "path": "Tipagem.Report"
+        "path": "Operadores.Report"
       }
     }
   ],

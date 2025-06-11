@@ -1,0 +1,35 @@
+table 'Operações Lógicos'
+	lineageTag: 565737a5-591f-4090-bd59-31f255764ca0
+
+	column Name
+		dataType: string
+		lineageTag: d2ce55ec-5886-4e69-892a-88b8a36a747a
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: string
+		lineageTag: 7211790a-aaac-46f3-a69c-4fa56caedaae
+		summarizeBy: none
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Operações Lógicos' = m
+		mode: import
+		source =
+				[
+				    Verdadeiro = true,
+				    Falso = false,
+				    E = Verdadeiro and Falso,
+				    Ou = Verdadeiro or Falso,
+				    E_Ou = (Verdadeiro and Falso) or Verdadeiro,
+				    Não = not Verdadeiro
+				]
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Record
+

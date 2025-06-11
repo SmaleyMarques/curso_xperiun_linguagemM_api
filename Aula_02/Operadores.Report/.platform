@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Operadores"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "22d82e37-bfab-46e1-89d8-fb4f3e51f52e"
+  }
+}

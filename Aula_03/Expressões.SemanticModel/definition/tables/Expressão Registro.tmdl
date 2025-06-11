@@ -1,0 +1,34 @@
+table 'Expressão Registro'
+	lineageTag: efcdc7b9-f032-483c-ac02-066ac99227e5
+
+	column Name
+		dataType: string
+		lineageTag: 7b19d6e0-5630-427b-9199-f68d386412af
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: string
+		lineageTag: 27ac5ace-36dd-4269-98ad-929270829e53
+		summarizeBy: none
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Expressão Registro' = m
+		mode: import
+		source =
+				[
+				    Source = Excel.Workbook(File.Contents("C:\Users\Smaley\Documents\Smaley\Cursos\Xperiun\APIs e Linguagem M Avançado\data\Funcionarios.xlsx"), null, true),
+				    Planilha1_Sheet = Source{[Item="Planilha1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Planilha1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Cód Funcionário", Int64.Type}, {"Funcionário", type text}, {"Sexo", type text}, {"Data Admissão", type date}, {"Cód Cargo", Int64.Type}, {"Cargo", type text}, {"Data Cargo", type date}, {"Cód Escala", Int64.Type}, {"Escala", type text}, {"Cód C.Custo", type text}, {"Centro Custo", type text}, {"Cód T. Contrato", Int64.Type}, {"Tipo Contrato", type text}, {"Cód Estado Civil", Int64.Type}, {"Estado Civil", type text}, {"Cód Escolaridade", Int64.Type}, {"Escolaridade", type text}, {"Data Nascimento", type text}, {"Cód Nacionalidade", Int64.Type}, {"Nacionalidade", type text}, {"Cód Raça", Int64.Type}, {"Raça", type text}, {"Valor Salário", Currency.Type}, {"Data Salário", type date}, {"Cód Situação", Int64.Type}, {"Situação", type text}, {"Data Afastamento", type date}, {"Cód Causa Afastamento", Int64.Type}, {"Causa Afastamento", type text}}),
+				    #"Removed Errors" = Table.RemoveRowsWithErrors(#"Changed Type", {"Data Afastamento"})
+				]
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Record
+

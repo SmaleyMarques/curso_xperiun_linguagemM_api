@@ -18,7 +18,7 @@ annotation PBI_QueryOrder = ["Texto","Número","Temporal","Lógico","Nulo","Bin�
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.143.1378.0 (25.05)+4e1de9c957866bc5336e0d250838314aa54ff3a8
+annotation PBIDesktopVersion = 2.144.679.0 (25.06)+ef40146207b86a826d1c72a7727a743ee37450e9
 
 annotation PBI_ProTooling = ["DevMode"]
 

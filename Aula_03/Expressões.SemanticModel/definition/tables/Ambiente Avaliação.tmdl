@@ -1,0 +1,38 @@
+table 'Ambiente Avaliação'
+	lineageTag: 42750fc3-44c0-4f5b-b09e-6f6d40ab9bd8
+
+	column Name
+		dataType: string
+		lineageTag: 6b856d7b-5630-4eaa-bc3d-5ed87e4a4849
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: string
+		lineageTag: 259d2aad-b899-4750-817b-55b8fb8520bf
+		summarizeBy: none
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Ambiente Avaliação' = m
+		mode: import
+		source =
+				let
+				    a =
+				        let
+				            x = 1 + x, // x externo
+				            y = 2,
+				            z = x + y // x da própria expressão let in
+				        in
+				            z,
+				    b = 3
+				in
+				    [c = a + b]
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Record
+

@@ -1,0 +1,276 @@
+table 'Expressão Let_In'
+	lineageTag: f8c59892-df96-407c-9fab-36cfa347bcab
+
+	column 'Cód Funcionário'
+		dataType: int64
+		formatString: 0
+		lineageTag: f2bdd410-70c0-4ee0-af64-5bdd006acfa6
+		summarizeBy: sum
+		sourceColumn: Cód Funcionário
+
+		annotation SummarizationSetBy = Automatic
+
+	column Funcionário
+		dataType: string
+		lineageTag: 69418527-d7ba-4181-90ac-2f9958cf8c84
+		summarizeBy: none
+		sourceColumn: Funcionário
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sexo
+		dataType: string
+		lineageTag: fe1dbbce-5106-4128-86ff-a820459216e5
+		summarizeBy: none
+		sourceColumn: Sexo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Admissão'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c54c2b2d-eac5-4fd6-9061-80bc46d872d3
+		summarizeBy: none
+		sourceColumn: Data Admissão
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Cód Cargo'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3b24c63a-fc37-4c99-aa67-58dc91391c4c
+		summarizeBy: sum
+		sourceColumn: Cód Cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cargo
+		dataType: string
+		lineageTag: dd019334-9790-44cf-80d9-f2fe44eb1cfd
+		summarizeBy: none
+		sourceColumn: Cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Cargo'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 291e3484-0902-4c66-9c67-a65e3d1e0cd8
+		summarizeBy: none
+		sourceColumn: Data Cargo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Cód Escala'
+		dataType: int64
+		formatString: 0
+		lineageTag: 0044f440-1252-4f18-90e9-887966949ed6
+		summarizeBy: sum
+		sourceColumn: Cód Escala
+
+		annotation SummarizationSetBy = Automatic
+
+	column Escala
+		dataType: string
+		lineageTag: cdf5a530-4550-4fc5-b224-fbc7470c1382
+		summarizeBy: none
+		sourceColumn: Escala
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cód C.Custo'
+		dataType: string
+		lineageTag: 5c2af5c8-e80d-4968-ad24-49d4c178e122
+		summarizeBy: none
+		sourceColumn: Cód C.Custo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Centro Custo'
+		dataType: string
+		lineageTag: e584e3c5-115a-48d9-be2a-a170502b1234
+		summarizeBy: none
+		sourceColumn: Centro Custo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cód T. Contrato'
+		dataType: int64
+		formatString: 0
+		lineageTag: ff1eb85b-8f2b-42ce-8ab8-b7a119e7cec4
+		summarizeBy: sum
+		sourceColumn: Cód T. Contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo Contrato'
+		dataType: string
+		lineageTag: 0625a1d5-fa20-4af3-a74e-e16e09048d9f
+		summarizeBy: none
+		sourceColumn: Tipo Contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cód Estado Civil'
+		dataType: int64
+		formatString: 0
+		lineageTag: 25a419d8-6e45-4a4d-a4de-6a81412cbee0
+		summarizeBy: sum
+		sourceColumn: Cód Estado Civil
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Estado Civil'
+		dataType: string
+		lineageTag: cfe3e625-3e5b-47ab-bf5b-c026ad269dd4
+		summarizeBy: none
+		sourceColumn: Estado Civil
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cód Escolaridade'
+		dataType: int64
+		formatString: 0
+		lineageTag: a968700b-b636-4073-8744-753312d1d549
+		summarizeBy: sum
+		sourceColumn: Cód Escolaridade
+
+		annotation SummarizationSetBy = Automatic
+
+	column Escolaridade
+		dataType: string
+		lineageTag: f3cc3751-d71e-4873-b478-70d492cb8ea2
+		summarizeBy: none
+		sourceColumn: Escolaridade
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Nascimento'
+		dataType: string
+		lineageTag: ab30eb26-039d-4946-b351-423200afccb0
+		summarizeBy: none
+		sourceColumn: Data Nascimento
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cód Nacionalidade'
+		dataType: int64
+		formatString: 0
+		lineageTag: f12d13b2-4481-4208-aa09-7f84c66f032d
+		summarizeBy: sum
+		sourceColumn: Cód Nacionalidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nacionalidade
+		dataType: string
+		lineageTag: 82863c1d-8487-4e83-90cb-4dede5034e90
+		summarizeBy: none
+		sourceColumn: Nacionalidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cód Raça'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7a4a3ecc-7491-4b85-a050-e80f4364221c
+		summarizeBy: sum
+		sourceColumn: Cód Raça
+
+		annotation SummarizationSetBy = Automatic
+
+	column Raça
+		dataType: string
+		lineageTag: c270cd7a-a1e1-47f0-8754-138ef52a08f2
+		summarizeBy: none
+		sourceColumn: Raça
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Valor Salário'
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: afa295b0-a20b-40dd-8d80-0a8ea2d6d76f
+		summarizeBy: sum
+		sourceColumn: Valor Salário
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column 'Data Salário'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 324fb1fb-fdd0-48d5-9673-4a1c2df88561
+		summarizeBy: none
+		sourceColumn: Data Salário
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Cód Situação'
+		dataType: int64
+		formatString: 0
+		lineageTag: bc1350d4-c164-4a86-a30a-4458212764be
+		summarizeBy: sum
+		sourceColumn: Cód Situação
+
+		annotation SummarizationSetBy = Automatic
+
+	column Situação
+		dataType: string
+		lineageTag: 65b1533a-fb20-426a-a90c-62a300676cad
+		summarizeBy: none
+		sourceColumn: Situação
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Afastamento'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f7233047-439a-4d04-bbe1-7e85bc74344a
+		summarizeBy: none
+		sourceColumn: Data Afastamento
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Cód Causa Afastamento'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8b1a5675-5be7-44e1-9f9e-1e3fb3384e0e
+		summarizeBy: sum
+		sourceColumn: Cód Causa Afastamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Causa Afastamento'
+		dataType: string
+		lineageTag: 6efef6c6-0e9e-4f01-b1b0-a55c433c6b75
+		summarizeBy: none
+		sourceColumn: Causa Afastamento
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Expressão Let_In' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\Smaley\Documents\Smaley\Cursos\Xperiun\APIs e Linguagem M Avançado\data\Funcionarios.xlsx"), null, true),
+				    Planilha1_Sheet = Source{[Item="Planilha1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Planilha1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Cód Funcionário", Int64.Type}, {"Funcionário", type text}, {"Sexo", type text}, {"Data Admissão", type date}, {"Cód Cargo", Int64.Type}, {"Cargo", type text}, {"Data Cargo", type date}, {"Cód Escala", Int64.Type}, {"Escala", type text}, {"Cód C.Custo", type text}, {"Centro Custo", type text}, {"Cód T. Contrato", Int64.Type}, {"Tipo Contrato", type text}, {"Cód Estado Civil", Int64.Type}, {"Estado Civil", type text}, {"Cód Escolaridade", Int64.Type}, {"Escolaridade", type text}, {"Data Nascimento", type text}, {"Cód Nacionalidade", Int64.Type}, {"Nacionalidade", type text}, {"Cód Raça", Int64.Type}, {"Raça", type text}, {"Valor Salário", Currency.Type}, {"Data Salário", type date}, {"Cód Situação", Int64.Type}, {"Situação", type text}, {"Data Afastamento", type date}, {"Cód Causa Afastamento", Int64.Type}, {"Causa Afastamento", type text}}),
+				    #"Removed Errors" = Table.RemoveRowsWithErrors(#"Changed Type", {"Data Afastamento"})
+				in
+				    #"Removed Errors"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
