@@ -1,0 +1,19 @@
+table Documentação
+	lineageTag: 7645880d-5c0b-4b91-8d52-e4dc92a32cb6
+
+	column Documentação
+		dataType: string
+		lineageTag: 20e79b1c-3b33-42e9-91c5-58e5db88b195
+		summarizeBy: none
+		sourceColumn: Documentação
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Documentação = m
+		mode: import
+		source = "https://learn.microsoft.com/pt-br/powerquery-m/"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Text
+

@@ -1,0 +1,25 @@
+table 'Função Invocada'
+	lineageTag: 034f8309-41ef-42e5-a994-fccece98e742
+
+	column 'Função Invocada'
+		dataType: double
+		lineageTag: f4ced824-ec58-47da-9cde-21c43b594048
+		summarizeBy: sum
+		sourceColumn: Função Invocada
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Função Invocada' = m
+		mode: import
+		source =
+				let
+				    Fonte = Função(1, 2)
+				in
+				    Fonte
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Number
+

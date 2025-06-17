@@ -1,0 +1,31 @@
+table Referência
+	lineageTag: 3ad0de0b-f905-4644-a447-d936e965d496
+
+	column Name
+		dataType: string
+		lineageTag: dfe14e8b-a6d3-4cfc-ada8-90090dd42183
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: string
+		lineageTag: 0774d652-3931-4c0a-82b5-0f269cc9e38f
+		summarizeBy: none
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Referência = m
+		mode: import
+		source =
+				let
+				    Fonte = #shared
+				in
+				    Fonte
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Record
+

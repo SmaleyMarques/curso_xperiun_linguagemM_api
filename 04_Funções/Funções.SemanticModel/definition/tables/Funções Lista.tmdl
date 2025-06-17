@@ -1,0 +1,41 @@
+table 'Funções Lista'
+	lineageTag: 2aca14e6-366f-49e1-97e2-b7b84089f307
+
+	column Name
+		dataType: string
+		lineageTag: 06d08eec-f598-4b0f-8f9c-d8eb0db54bc1
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: string
+		lineageTag: e929a74d-075b-4f79-88cc-f7b3307a8808
+		summarizeBy: none
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Funções Lista' = m
+		mode: import
+		queryGroup: 'Principais Funções'
+		source = ```
+				let
+				    Registro = [
+				    lista = {3..30},
+				    ContaValores = List.Count(lista),
+				    MaximoLista = List.Max(lista),
+				    VerificaVazio = List.IsEmpty(lista),
+				    SelecionaNaLista = List.Select(lista, each Number.Mod(_,3) = 0 ), // each => iterador (cada)
+				    ListaDatas = List.Dates(#date(2025,01,01), 365, #duration(1,0,0,0)), // função geradora de calendário
+				    TransformaValores = List.Transform(ListaDatas, each {Date.Day(_), Date.Month(_), Date.Year(_)}) 
+				    ]
+				in
+				    Registro
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Record
+
