@@ -54,12 +54,12 @@ table Each
 				let
 				    /* each = Palavra reservada para função temporário iteradora */
 				    
-				    Exemplo = Table.AddColumn(#"Funções Tabela"[ConverteRegistros], "Price > 20", each [Price] > 20, type logical)
-				    // Exemplo = Table.AddColumn(#"Funções Tabela"[ConverteRegistros], "Price > 20", each _[Price] > 20, type logical)
-				    // Exemplo = Table.AddColumn(#"Funções Tabela"[ConverteRegistros], "Price > 20", (_) => _[Price] > 20, type logical)
-				    // Exemplo = Table.AddColumn(#"Funções Tabela"[ConverteRegistros], "Price > 20", (cadaLinha) => cadaLinha[Price] > 20, type logical)
+				    Exemplo_each = Table.AddColumn(#"Funções Tabela"[ConverteRegistros], "Price > 20", each [Price] > 20, type logical)
+				    // Exemplo_each = Table.AddColumn(#"Funções Tabela"[ConverteRegistros], "Price > 20", each _[Price] > 20, type logical)
+				    // Exemplo_each = Table.AddColumn(#"Funções Tabela"[ConverteRegistros], "Price > 20", (_) => _[Price] > 20, type logical)
+				    // Exemplo_each = Table.AddColumn(#"Funções Tabela"[ConverteRegistros], "Price > 20", (cadaLinha) => cadaLinha[Price] > 20, type logical)
 				in
-				    Exemplo
+				    Exemplo_each
 				```
 
 	annotation PBI_NavigationStepName = Navegação

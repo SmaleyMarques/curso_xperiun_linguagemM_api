@@ -6,7 +6,6 @@ expression Função =
 		in
 		    Soma
 	lineageTag: 9b36d5f4-f558-4dfd-91fc-27e53427d2c5
-	queryGroup: 'Principais Funções'
 
 	annotation PBI_NavigationStepName = Navegação
 

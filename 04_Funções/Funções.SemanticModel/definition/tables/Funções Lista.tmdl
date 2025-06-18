@@ -29,7 +29,7 @@ table 'Funções Lista'
 				    VerificaVazio = List.IsEmpty(lista),
 				    SelecionaNaLista = List.Select(lista, each Number.Mod(_,3) = 0 ), // each => iterador (cada)
 				    ListaDatas = List.Dates(#date(2025,01,01), 365, #duration(1,0,0,0)), // função geradora de calendário
-				    TransformaValores = List.Transform(ListaDatas, each {Date.Day(_), Date.Month(_), Date.Year(_)}) 
+				    TransformaValores = List.Transform(ListaDatas, each {_, Date.Day(_), Date.Month(_), Date.Year(_), (Date.Year(_) * 100) + Date.Month(_)}) 
 				    ]
 				in
 				    Registro

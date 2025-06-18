@@ -14,7 +14,7 @@ annotation __PBI_TimeIntelligenceEnabled = 0
 
 annotation PBIDesktopVersion = 2.144.679.0 (25.06)+ef40146207b86a826d1c72a7727a743ee37450e9
 
-annotation PBI_QueryOrder = ["Documentação","Função","Funções Registro","Funções Lista","Funções Tabela","Função Invocada","Each"]
+annotation PBI_QueryOrder = ["Documentação","Função","Funções Registro","Funções Lista","Funções Tabela","Função Invocada","Each","Closures"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -24,6 +24,7 @@ ref table 'Funções Lista'
 ref table 'Funções Tabela'
 ref table 'Função Invocada'
 ref table Each
+ref table Closures
 
 ref cultureInfo pt-BR
 
