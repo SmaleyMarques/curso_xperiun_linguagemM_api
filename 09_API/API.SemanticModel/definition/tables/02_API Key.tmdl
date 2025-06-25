@@ -1,0 +1,92 @@
+table '02_API Key'
+	lineageTag: c29116d5-2366-47c7-b895-09084e93d984
+
+	column _id
+		dataType: string
+		lineageTag: c90cfd23-07e0-4cb4-b516-dfc36b25488b
+		summarizeBy: none
+		sourceColumn: _id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: 7a8e3528-31d9-4c83-a93b-bb9df4186da7
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column runtimeInMinutes
+		dataType: string
+		lineageTag: c7fa1a19-aa8f-49a9-823c-5603827286f2
+		summarizeBy: none
+		sourceColumn: runtimeInMinutes
+
+		annotation SummarizationSetBy = Automatic
+
+	column budgetInMillions
+		dataType: string
+		lineageTag: b3be74ad-0d4d-433d-8fb7-b6f174b7acbc
+		summarizeBy: none
+		sourceColumn: budgetInMillions
+
+		annotation SummarizationSetBy = Automatic
+
+	column boxOfficeRevenueInMillions
+		dataType: string
+		lineageTag: 4f6fe119-64db-45ef-833a-b503f6f06e27
+		summarizeBy: none
+		sourceColumn: boxOfficeRevenueInMillions
+
+		annotation SummarizationSetBy = Automatic
+
+	column academyAwardNominations
+		dataType: string
+		lineageTag: a8edd9fc-3e1e-47d1-a6aa-f797ecff4032
+		summarizeBy: none
+		sourceColumn: academyAwardNominations
+
+		annotation SummarizationSetBy = Automatic
+
+	column academyAwardWins
+		dataType: string
+		lineageTag: 337062f0-0cfd-4d69-a6e0-277ed72d5d85
+		summarizeBy: none
+		sourceColumn: academyAwardWins
+
+		annotation SummarizationSetBy = Automatic
+
+	column rottenTomatoesScore
+		dataType: string
+		lineageTag: d4a5946d-9983-4f40-87cb-ab0c17761174
+		summarizeBy: none
+		sourceColumn: rottenTomatoesScore
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '02_API Key' = m
+		mode: import
+		queryGroup: 'Principais Utilizações'
+		source =
+				let
+				    api_key = "Aky3j52n5VSpP1XQDrcd",
+				    request = Web.Contents(
+				                    "https://the-one-api.dev",
+				                    [
+				                        RelativePath = "v2/movie",
+				                        Headers = [
+				                            Authorization = "Bearer "&api_key
+				                        ]
+				                    ]
+				    ),
+				    json = Json.Document(request),
+				    docs = json[docs],
+				    expandirTabela = Table.FromRecords(docs)
+				in
+				    expandirTabela
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

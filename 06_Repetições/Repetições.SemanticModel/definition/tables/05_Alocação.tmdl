@@ -1,0 +1,78 @@
+table 05_Alocação
+	lineageTag: 6c748cfb-1c71-466b-885e-7dc7d6d3e61f
+
+	column NOME
+		dataType: string
+		lineageTag: 2764831a-b04a-4281-ac11-74ff2a6a5655
+		summarizeBy: none
+		sourceColumn: NOME
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATA_INICIO
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: dd0cba81-21b0-4c47-b282-20ce42fc6c3d
+		summarizeBy: none
+		sourceColumn: DATA_INICIO
+
+		variation Variation
+			isDefault
+			relationship: c103baf4-c9e4-44f4-b63b-856fe4b66b59
+			defaultHierarchy: LocalDateTable_47e62e71-7abd-4530-9979-1fa50ac115f5.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DATA_FIM
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9c4ae061-bea2-47c9-8314-b5d299ad5a43
+		summarizeBy: none
+		sourceColumn: DATA_FIM
+
+		variation Variation
+			isDefault
+			relationship: 0466bb3c-01ca-4005-b61c-fe03c99b1672
+			defaultHierarchy: LocalDateTable_035140d6-5bb2-4046-8001-a33089549fdd.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Alocacao
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0c4edbde-4770-474d-8450-332b508e4f8d
+		summarizeBy: none
+		sourceColumn: Alocacao
+
+		variation Variation
+			isDefault
+			relationship: 7cee524e-75b2-42fb-95bf-b9731848f5c0
+			defaultHierarchy: LocalDateTable_970cf2ec-cc74-49c6-a4f3-6b62a557b0f2.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition 05_Alocação = m
+		mode: import
+		queryGroup: 'Aplicações Praticas'
+		source =
+				let
+				    caminho = "C:\Users\Smaley\Documents\Smaley\Cursos\Xperiun\APIs e Linguagem M Avançado\data\Alocacao.xlsx",
+				    excel = Excel.Workbook(File.Contents(caminho), true, false),
+				    tabela = excel{[Item="Alocacao"]}[Data],
+				    alocacoes = Table.AddColumn(tabela, "Alocacao", each fxAlocacao(_)),
+				    #"Alocacao Expandido" = Table.ExpandListColumn(alocacoes, "Alocacao"),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Alocacao Expandido",{{"Alocacao", type date}}),
+				    #"Outras Colunas Removidas" = Table.SelectColumns(#"Tipo Alterado",{"NOME", "DATA_INICIO", "DATA_FIM", "Alocacao"})
+				in
+				    #"Outras Colunas Removidas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

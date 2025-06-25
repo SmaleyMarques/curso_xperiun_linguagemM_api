@@ -13,9 +13,10 @@ table 'Função Invocada'
 
 	partition 'Função Invocada' = m
 		mode: import
+		queryGroup: Conceito
 		source =
 				let
-				    Fonte = Função(1, 2)
+				    Fonte = #"01_Função"(1, 2)
 				in
 				    Fonte
 

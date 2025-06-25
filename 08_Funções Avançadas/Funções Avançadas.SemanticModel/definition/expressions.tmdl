@@ -1,0 +1,39 @@
+expression Filtro =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Users\Smaley\Documents\Smaley\Cursos\Xperiun\APIs e Linguagem M Avançado\data\BaseTableBuffer.xlsx"), null, true),
+		    Filtro_Sheet = Source{[Item="Filtro",Kind="Sheet"]}[Data]
+		in
+		    Filtro_Sheet
+	lineageTag: 5c3dfeff-8575-43f2-a718-082252ef15eb
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+expression fxSubstituicao = ```
+		let
+		    Source = (frase as text, substituirEssas as list, porEssas as list ) =>
+		let
+		    // frase = "A grama verde reluz suavemente com as gotas de orvalho.",
+		    // substituirEssas =   {"azul",        "alto",     "verde",    "amarelas", "através das","orvalho"},
+		    // porEssas =          {"avermelhado", "baixo",    "alta",     "secas",    "por entre as","chuva"},
+		    contagemMaxima = List.Count(porEssas),
+		    substituicao = 
+		        List.Generate(
+		            ()=> [contagem = 0, texto = frase ],
+		            each [contagem] <= contagemMaxima,
+		            each [contagem = [contagem] + 1, texto = Text.Replace([texto], substituirEssas{[contagem]}, porEssas{[contagem]})],
+		            each [texto]
+		        ),
+		    fraseSubstituida = List.Last(substituicao)
+		in
+		    fraseSubstituida
+		in
+		    Source
+		```
+	lineageTag: 5617b87a-22d5-4658-b501-71ac8a677e03
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Function
+

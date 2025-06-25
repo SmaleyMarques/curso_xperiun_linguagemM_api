@@ -1,0 +1,40 @@
+table 01_Requisição
+	lineageTag: 9e626423-9bc7-496a-be60-d2e15ac0183b
+
+	column _id
+		dataType: string
+		lineageTag: e1621c11-db70-494b-87e6-29e8d65202aa
+		summarizeBy: none
+		sourceColumn: _id
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: b9af7a6a-0e2b-47f9-9586-1155d3225f2d
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 01_Requisição = m
+		mode: import
+		queryGroup: 'Principais Utilizações'
+		source =
+				let
+				    request = Web.Contents(
+				                    "https://the-one-api.dev",
+				                    [
+				                        RelativePath = "v2/book"
+				                    ]
+				    ),
+				    json = Json.Document(request),
+				    docs = json[docs],
+				    expandirTabela = Table.FromRecords(docs)
+				in
+				    expandirTabela
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

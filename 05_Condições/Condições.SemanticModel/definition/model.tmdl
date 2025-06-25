@@ -1,0 +1,36 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup Conceito
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Principais Aplicações'
+
+	annotation PBI_QueryGroupOrder = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+annotation PBIDesktopVersion = 2.144.679.0 (25.06)+ef40146207b86a826d1c72a7727a743ee37450e9
+
+annotation PBI_QueryOrder = ["01_Condições","02_Coluna Condicional","03_Transformação Condicional","04_Multiplas Condições","05_Condições Mistas","read_csv","read_excel"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+ref table 01_Condições
+ref table '02_Coluna Condicional'
+ref table DateTableTemplate_8b9b6670-d9d5-4697-a171-d466db4c2d62
+ref table LocalDateTable_a5b90555-083a-4c42-9b99-353b0f765af7
+ref table '03_Transformação Condicional'
+ref table LocalDateTable_dcdea2d0-af23-4fdf-a497-5b1c84d73e6d
+ref table '04_Multiplas Condições'
+ref table LocalDateTable_4beca409-d623-46ed-ba9b-8ee0fd338fe5
+ref table '05_Condições Mistas'
+
+ref cultureInfo pt-BR
+

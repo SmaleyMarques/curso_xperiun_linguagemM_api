@@ -1,0 +1,46 @@
+table '02_Web Contents Parametros'
+	lineageTag: e3ada8f1-2e7c-4860-a946-057719aa474f
+
+	column Column1
+		dataType: string
+		lineageTag: b4cb72d7-89e9-4aa4-a861-456e4e6fd67a
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '02_Web Contents Parametros' = m
+		mode: import
+		queryGroup: 'Web Contents'
+		source = ```
+				let
+				    numeros = 15,
+				    minimo = 1,
+				    maximo = 999,
+				    // linkCompleto = "https://www.random.org/integers/?num="&numeros&"&min="&minimo&"&max="&maximo&"&col=1&base=10&format=plain&rnd=new",
+				    link = "https://www.random.org",
+				    conteudo = 
+				        Web.Contents(
+				            link,
+				            [
+				                RelativePath = "integers/",
+				                Query = [
+				                    num = Text.From(numeros),
+				                    min = Text.From(minimo),
+				                    max = Text.From(maximo),
+				                    col = "1",
+				                    base = "10",
+				                    format = "plain",
+				                    rnd = "new"
+				                ]
+				            ]
+				        ),
+				    csv = Csv.Document(conteudo,[Delimiter=";", Columns=1, Encoding=65001, QuoteStyle=QuoteStyle.None])
+				in
+				    csv
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

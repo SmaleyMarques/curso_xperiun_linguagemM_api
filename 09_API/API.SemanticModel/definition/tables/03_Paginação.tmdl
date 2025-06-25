@@ -1,0 +1,69 @@
+table 03_Paginação
+	lineageTag: 6febdef6-d74e-4736-9780-195a3c42e4f5
+
+	column _id
+		dataType: string
+		lineageTag: 97a72a0c-3b72-43f9-bfd2-8ba91e803f58
+		summarizeBy: none
+		sourceColumn: _id
+
+		annotation SummarizationSetBy = Automatic
+
+	column dialog
+		dataType: string
+		lineageTag: e6fb9aaf-b51d-4ab4-b295-4e5e5e8719af
+		summarizeBy: none
+		sourceColumn: dialog
+
+		annotation SummarizationSetBy = Automatic
+
+	column movie
+		dataType: string
+		lineageTag: 4c8a84e6-d1d4-4f3e-97d1-6cc3d0f626e6
+		summarizeBy: none
+		sourceColumn: movie
+
+		annotation SummarizationSetBy = Automatic
+
+	column character
+		dataType: string
+		lineageTag: 36571369-c412-4a19-9671-61881072fc60
+		summarizeBy: none
+		sourceColumn: character
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: string
+		lineageTag: 2fdcf9be-8deb-4371-a497-20ebfd0255cb
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 03_Paginação = m
+		mode: import
+		queryGroup: 'Principais Utilizações'
+		source =
+				let
+				    endpoint = "quote",
+				    paginacao = List.Generate(
+				        ()=> [consulta = fxRequisicao(endpoint, pagina), pagina = 1],
+				        each not List.IsEmpty([consulta]),
+				        // each [consulta = fxRequisicao(endpoint, pagina), pagina = [pagina] + 1],
+				        each [
+				                // consulta = Function.Invoke(()=> fxRequisicao(endpoint, pagina), #duration(0,0,10,0))
+				                consulta = try fxRequisicao(endpoint, pagina) otherwise Function.Invoke(()=> fxRequisicao(endpoint, pagina), #duration(0,0,10,0)),
+				                pagina = [pagina] + 1
+				            ],
+				        each [consulta]
+				    ),
+				    apender = List.Combine(paginacao),
+				    expandirTabela = Table.FromRecords(apender)
+				in
+				    expandirTabela
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

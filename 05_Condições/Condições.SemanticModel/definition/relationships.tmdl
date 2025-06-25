@@ -1,0 +1,27 @@
+relationship 43167f14-b0d8-46af-aa3e-d726d10874ec
+	joinOnDateBehavior: datePartOnly
+	fromColumn: '02_Coluna Condicional'.Nascimento
+	toColumn: LocalDateTable_a5b90555-083a-4c42-9b99-353b0f765af7.Date
+
+relationship 11f4a723-50ea-4afb-b81c-7312284a92d4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: '03_Transformação Condicional'.Nascimento
+	toColumn: LocalDateTable_dcdea2d0-af23-4fdf-a497-5b1c84d73e6d.Date
+
+relationship 8db1789d-36aa-45e5-aefe-b5859ada2b1f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: '04_Multiplas Condições'.Nascimento
+	toColumn: LocalDateTable_4beca409-d623-46ed-ba9b-8ee0fd338fe5.Date
+
+relationship AutoDetected_cb9c42e3-c940-4385-bd5b-93fbc9660338
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: '03_Transformação Condicional'.Nome
+	toColumn: '02_Coluna Condicional'.Nome
+
+relationship AutoDetected_cb73e7dc-6438-4fc9-935c-2d5a45e2f8be
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: '04_Multiplas Condições'.Nome
+	toColumn: '02_Coluna Condicional'.Nome
+

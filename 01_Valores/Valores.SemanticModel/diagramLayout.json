@@ -10,50 +10,10 @@
       "nodes": [
         {
           "location": {
-            "x": 0,
+            "x": 2272,
             "y": 24
           },
-          "nodeIndex": "Binário",
-          "nodeLineageTag": "75cfd065-e2af-4181-ab36-ed525fc36536",
-          "size": {
-            "height": 128,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 284,
-            "y": 36
-          },
-          "nodeIndex": "Lista",
-          "nodeLineageTag": "ee46c557-24de-4eb4-ae6d-4b175013865f",
-          "size": {
-            "height": 104,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 568,
-            "y": 24
-          },
-          "nodeIndex": "Lógico",
-          "nodeLineageTag": "1bb64900-9ce9-4a41-a422-998dc44e0d77",
-          "size": {
-            "height": 128,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 852,
-            "y": 24
-          },
-          "nodeIndex": "Nulo",
-          "nodeLineageTag": "f92a1925-8182-44f6-adf4-30270e797b9c",
+          "nodeIndex": "01_Texto",
           "size": {
             "height": 128,
             "width": 234
@@ -65,8 +25,55 @@
             "x": 1136,
             "y": 24
           },
-          "nodeIndex": "Número",
-          "nodeLineageTag": "eba972c6-771f-41ee-ae8c-3c80a126f1da",
+          "nodeIndex": "02_Número",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1988,
+            "y": 24
+          },
+          "nodeIndex": "03_Temporal",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 568,
+            "y": 24
+          },
+          "nodeIndex": "04_Lógico",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 852,
+            "y": 24
+          },
+          "nodeIndex": "05_Nulo",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 24
+          },
+          "nodeIndex": "06_Binário",
           "size": {
             "height": 128,
             "width": 234
@@ -78,10 +85,21 @@
             "x": 1420,
             "y": 24
           },
-          "nodeIndex": "Registro",
-          "nodeLineageTag": "32011e69-4845-444e-9d55-eb02f19b1290",
+          "nodeIndex": "07_Registro",
           "size": {
             "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 284,
+            "y": 36
+          },
+          "nodeIndex": "08_Lista",
+          "size": {
+            "height": 104,
             "width": 234
           },
           "zIndex": 0
@@ -91,36 +109,9 @@
             "x": 1704,
             "y": 0
           },
-          "nodeIndex": "Tabela",
-          "nodeLineageTag": "16158094-6e93-43c0-8671-c594134a3653",
+          "nodeIndex": "09_Tabela",
           "size": {
             "height": 176,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 1988,
-            "y": 24
-          },
-          "nodeIndex": "Temporal",
-          "nodeLineageTag": "1a2c1e33-c179-4f66-9bb6-a13ebac435fb",
-          "size": {
-            "height": 128,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 2272,
-            "y": 24
-          },
-          "nodeIndex": "Texto",
-          "nodeLineageTag": "143ae241-1d32-43ab-a414-07080da253bc",
-          "size": {
-            "height": 128,
             "width": 234
           },
           "zIndex": 0

@@ -1,0 +1,12 @@
+relationship AutoDetected_2db1a3db-e828-4fdb-8abd-3286ec433302
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: '03_Tratando Multiplos Erros'.Data
+	toColumn: '01_Try Otherwise'.Data
+
+relationship AutoDetected_bc6fce02-d240-49fa-8c7b-e2eb04e01ed2
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: '03_Tratando Multiplos Erros'.Data
+	toColumn: 02_Try.Data
+

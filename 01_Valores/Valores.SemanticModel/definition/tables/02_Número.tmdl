@@ -1,0 +1,38 @@
+table 02_Número
+	lineageTag: eba972c6-771f-41ee-ae8c-3c80a126f1da
+
+	column Name
+		dataType: string
+		lineageTag: c626f921-6b45-42ec-858b-f938dd9101f0
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: string
+		lineageTag: 7ab1593a-cfb0-4422-ba81-173379c6557f
+		summarizeBy: none
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 02_Número = m
+		mode: import
+		queryGroup: Tipos_Primitivos
+		source =
+				[
+				  inteiro = 1,
+				  decimal = 1.5, // (.) para separador decimal
+				  notação_ciêntifica = 1.5e10, // 1.5^10 ou 150000000000
+				  infinito = #infinity, // Ex: resultado de divisão por 0 (1/0)
+				  not_a_number = #nan, // Ex: resultado de divisão 0 por 0 (0/0)
+				  hexadecimal = 0x0a,
+				  performace = 0.1 + 0.2, // Cálculo na base binária para melhor performance
+				  precisão = Value.Add(0.1, 0.2, Precision.Decimal) // Correção para precisão
+				]
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Record
+

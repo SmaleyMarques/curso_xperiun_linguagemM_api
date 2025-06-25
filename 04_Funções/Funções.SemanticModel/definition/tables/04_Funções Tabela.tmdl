@@ -1,0 +1,57 @@
+table '04_Funções Tabela'
+	lineageTag: 10bb2df1-c109-44d9-b25b-cb7c330a58d5
+
+	column Name
+		dataType: string
+		lineageTag: c99d36d7-2961-4bd4-a063-26b43bf22221
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: string
+		lineageTag: 5b84dfb2-1fbc-40be-b91c-8ba1c069a9f6
+		summarizeBy: none
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '04_Funções Tabela' = m
+		mode: import
+		queryGroup: 'Principais Funções'
+		source = ```
+				let
+				    Registro = [
+				    listaRegistros =  {
+				        [OrderID = 1, CustomerID = 1, Item = "Fishing rod", Price = 100.0],
+				        [OrderID = 2,/* CustomerID = 1,*/ Item = "1 lb. worms", Price = 5.0],
+				        [OrderID = 3, CustomerID = 2, Item = "Fishing net", Price = 25.0],
+				        [OrderID = 4, CustomerID = 3, Item = "Fish-tazer", Price = 200.0],
+				        [OrderID = 5, CustomerID = 3, Item = "Bandaids", Price = 2.0],
+				        [OrderID = 6, CustomerID = 1, Item = "Tackle box", Price = 20.0],
+				        [OrderID = 7, CustomerID = 5, Item = "Bait", Price = 3.25],
+				        [OrderID = 8, CustomerID = 5, Item = "Fishing-Rod", Price = 100.0],
+				        [OrderID = 9, CustomerID = 6, Item = "Bait", Price = 3.25]
+				    },
+				    ConverteRegistros = Table.FromRecords(
+				                            listaRegistros,
+				                            // {"OrderID", "CustomerID", "Item", "Price"} // null
+				                            type table [OrderID = nullable number, CustomerID = nullable number, Item = nullable text, Price = nullable number],
+				                            MissingField.UseNull),
+				    QtdLinhas = Table.RowCount(ConverteRegistros),
+				    Colunas = Table.ColumnNames(ConverteRegistros),
+				    RemoveNLinhasAcima = Table.RemoveFirstN(ConverteRegistros, each _ [CustomerID] <> 3), // Remove linhas até que a condição seja verdadeira
+				    RemoveNLinhasAbaixo = Table.RemoveLastN(ConverteRegistros, each _ [CustomerID] <> 3), 
+				    Filtro = Table.SelectRows(ConverteRegistros, each _ [CustomerID] = 3),
+				    FiltraColunas = Table.SelectColumns(ConverteRegistros, Colunas),
+				    NovaColuna = Table.AddColumn(ConverteRegistros, "Nova Coluna", each 1, type number)
+				    ]
+				in
+				    Registro
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Record
+

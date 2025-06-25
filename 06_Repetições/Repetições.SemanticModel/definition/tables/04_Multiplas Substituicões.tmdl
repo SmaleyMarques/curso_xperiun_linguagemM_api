@@ -1,0 +1,43 @@
+table '04_Multiplas Substituicões'
+	lineageTag: 94f83979-6934-42fd-90ef-89bf5601cf65
+
+	column Frases
+		dataType: string
+		lineageTag: f028993e-214b-40f1-ae91-4fc09187ffab
+		summarizeBy: none
+		sourceColumn: Frases
+
+		annotation SummarizationSetBy = Automatic
+
+	column Substituidas
+		dataType: string
+		lineageTag: 4296ea76-165e-461a-80ad-d22abb483140
+		summarizeBy: none
+		sourceColumn: Substituidas
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '04_Multiplas Substituicões' = m
+		mode: import
+		queryGroup: 'Aplicações Praticas'
+		source = ```
+				let
+				    frases = 
+				        {
+				            "O sol brilha alto no céu azul.",
+				            "A grama verde reluz suavemente com as gotas de orvalho.",
+				            "As folhas amarelas caem suavemente ao chão.",
+				            "A brisa suave sopra através das árvores"
+				        },
+				    Frases = Table.FromList(frases,null,type table [Frases = nullable text]), 
+				    substituirEssas = {"azul", "alto", "verde", "amarelas", "através das"},
+				    porEssas = {"avermelhado", "baixo", "alta", "secas", "por entre as"},
+				    frasesSubstituidas = Table.AddColumn(Frases, "Substituidas", each fxSubstituicao([Frases], substituirEssas, porEssas), type text)
+				in
+				    frasesSubstituidas
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

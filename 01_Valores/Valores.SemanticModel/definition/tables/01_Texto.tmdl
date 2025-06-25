@@ -1,0 +1,35 @@
+table 01_Texto
+	lineageTag: 143ae241-1d32-43ab-a414-07080da253bc
+
+	column Name
+		dataType: string
+		lineageTag: 13745534-635d-4d87-adba-a98396496a85
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: string
+		lineageTag: 8f20cae4-5ef4-40e5-bd71-b213700dbb31
+		summarizeBy: none
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 01_Texto = m
+		mode: import
+		queryGroup: Tipos_Primitivos
+		source = ```
+				// Qualquer valor entre aspas ("") 
+				[
+				    palavra = "palavra",
+				    palavra_concatenada = "pala" & "vra",
+				    palabra_aspas = """aspas""" // "" = escape carecter (aspas antes da aspas)
+				]
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Record
+

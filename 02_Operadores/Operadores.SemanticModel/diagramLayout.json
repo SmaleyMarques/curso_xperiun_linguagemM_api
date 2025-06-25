@@ -10,11 +10,22 @@
       "nodes": [
         {
           "location": {
+            "x": 568,
+            "y": 0
+          },
+          "nodeIndex": "01_Operações Matemáticas",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
             "x": 0,
             "y": 0
           },
-          "nodeIndex": "Operações Comparação",
-          "nodeLineageTag": "360eff65-e608-4d2b-9516-33ea366ed967",
+          "nodeIndex": "02_Operações Comparação",
           "size": {
             "height": 128,
             "width": 234
@@ -26,21 +37,7 @@
             "x": 284,
             "y": 0
           },
-          "nodeIndex": "Operações Lógicos",
-          "nodeLineageTag": "565737a5-591f-4090-bd59-31f255764ca0",
-          "size": {
-            "height": 128,
-            "width": 234
-          },
-          "zIndex": 0
-        },
-        {
-          "location": {
-            "x": 568,
-            "y": 0
-          },
-          "nodeIndex": "Operações Matemáticas",
-          "nodeLineageTag": "858ff174-11ff-470a-a8ca-9c7e48a987af",
+          "nodeIndex": "03_Operações Lógicos",
           "size": {
             "height": 128,
             "width": 234
@@ -52,8 +49,7 @@
             "x": 852,
             "y": 0
           },
-          "nodeIndex": "Operações Texto",
-          "nodeLineageTag": "cbfd4a60-cc71-4c8d-9472-c64bad9a40ad",
+          "nodeIndex": "04_Operações Texto",
           "size": {
             "height": 128,
             "width": 234

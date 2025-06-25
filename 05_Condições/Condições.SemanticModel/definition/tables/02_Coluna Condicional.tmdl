@@ -1,0 +1,113 @@
+table '02_Coluna Condicional'
+	lineageTag: 91004ed3-b510-4941-afcd-fac413a5f336
+
+	column Nome
+		dataType: string
+		lineageTag: de32b9f9-68bf-4c0e-ae06-0a79446057cc
+		summarizeBy: none
+		sourceColumn: Nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nascimento
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: bf4c5177-7056-4517-bf42-d5f867305abe
+		summarizeBy: none
+		sourceColumn: Nascimento
+
+		variation Variation
+			isDefault
+			relationship: 43167f14-b0d8-46af-aa3e-d726d10874ec
+			defaultHierarchy: LocalDateTable_a5b90555-083a-4c42-9b99-353b0f765af7.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Carro
+		dataType: string
+		lineageTag: 2fee2310-9823-4251-a4fc-0a41696c4ad3
+		summarizeBy: none
+		sourceColumn: Carro
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cidade
+		dataType: string
+		lineageTag: 375a7a9f-2629-4e59-ac2d-de19c71857c4
+		summarizeBy: none
+		sourceColumn: Cidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trabalha
+		dataType: string
+		lineageTag: ac54c626-fc5f-4bb3-a3b1-88b8d5b893f4
+		summarizeBy: none
+		sourceColumn: Trabalha
+
+		annotation SummarizationSetBy = Automatic
+
+	column Estuda
+		dataType: string
+		lineageTag: 68c1879d-c2ba-4797-ae82-924b3cdc9310
+		summarizeBy: none
+		sourceColumn: Estuda
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Joga Video-Game'
+		dataType: string
+		lineageTag: 7b51f320-57ea-486d-adb4-6441f97ba5b3
+		summarizeBy: none
+		sourceColumn: Joga Video-Game
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Vai à Festas'
+		dataType: string
+		lineageTag: 34a4b5e6-6d7d-4b32-a3e7-dfc0d7586cb5
+		summarizeBy: none
+		sourceColumn: Vai à Festas
+
+		annotation SummarizationSetBy = Automatic
+
+	column Salário
+		dataType: double
+		lineageTag: 98635a8c-794d-4392-929b-229d33fbf2d1
+		summarizeBy: sum
+		sourceColumn: Salário
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Salário Maior 5Mil?'
+		dataType: string
+		lineageTag: c86963b6-f61c-490b-a548-1534a2b34147
+		summarizeBy: none
+		sourceColumn: Salário Maior 5Mil?
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '02_Coluna Condicional' = m
+		mode: import
+		queryGroup: 'Principais Aplicações'
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents("C:\Users\Smaley\Documents\Smaley\Cursos\Xperiun\APIs e Linguagem M Avançado\data\PowerQuery.csv"),[Delimiter=",", Columns=9, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    Cabecalho = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    Tipos = Table.TransformColumnTypes(Table.TransformColumnTypes(Cabecalho,{{"Nome", type text}, {"Nascimento", type date}, {"Carro", type text}, {"Cidade", type text}, {"Trabalha", type text}, {"Estuda", type text}, {"Joga Video-Game", type text}, {"Vai à Festas", type text}}), {"Salário", type number}, "en_US"),
+				    ColunaCondicional = Table.AddColumn(
+				                                        Tipos,
+				                                        "Salário Maior 5Mil?",
+				                                        each if [Salário] > 5000 then "É maior que 5000" else "Não é maior que 5000"
+				                                        )
+				in
+				    ColunaCondicional
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

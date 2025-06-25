@@ -1,0 +1,28 @@
+table '04_Table Buffer'
+	lineageTag: 10f5e289-aad2-46c4-8d4b-60b176d6ff46
+
+	column Column1
+		dataType: string
+		lineageTag: a3f86b69-6a7d-4bca-9520-30f02da6a37a
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '04_Table Buffer' = m
+		mode: import
+		queryGroup: 'Table Buffer List Buffer'
+		source =
+				let
+				    arquivo = File.Contents("C:\Users\Smaley\Documents\Smaley\Cursos\Xperiun\APIs e Linguagem M Avançado\data\BaseTableBuffer.xlsx"),
+				    Source = Excel.Workbook(arquivo, null, true),
+				    filtro = Table.Buffer(Filtro),
+				    tabela = Source{[Item="Base",Kind="Sheet"]}[Data],
+				    filtrarLinhas = Table.SelectRows(tabela, each List.Contains(filtro[Column1], [Column1]))
+				in
+				    filtrarLinhas
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

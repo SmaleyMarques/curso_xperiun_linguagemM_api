@@ -1,0 +1,59 @@
+table '03_Tratando Multiplos Erros'
+	lineageTag: d103628a-b54e-4502-89cc-9f8e3e283060
+
+	column Data
+		dataType: string
+		lineageTag: fab8ee97-b444-425a-80d4-88d93b9cc869
+		summarizeBy: none
+		sourceColumn: Data
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mês Número'
+		dataType: double
+		lineageTag: 8c49d336-8d25-431d-83d2-8ee927c47722
+		summarizeBy: sum
+		sourceColumn: Mês Número
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition '03_Tratando Multiplos Erros' = m
+		mode: import
+		queryGroup: 'Planejando Tratamento'
+		source = ```
+				let
+				    Exemplo = #table(
+				        {"Data"},
+				        {
+				            {#date(2021,1,1)},
+				            {"2"},
+				            {"DEZEMBRO"},
+				            {1}
+				        }
+				    ),
+				    TratandoErros = 
+				        Table.AddColumn(
+				            Exemplo,
+				            "Mês Número",
+				            each
+				                let 
+				                    conversao = try fxGeradorErros([Data]),
+				                    temError = conversao[HasError],
+				                    mensagem = conversao[Error][Message],
+				                    valor = if Text.Contains(mensagem, "001") then Date.Month(Date.From("01/"&[Data], "pt-br")) else
+				                            if Text.Contains(mensagem, "002") then Date.Month([Data]) else 
+				                            if Text.Contains(mensagem, "003") then [Data] else null
+				                in
+				                    valor,
+				            type number
+				        )
+				in
+				    TratandoErros
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

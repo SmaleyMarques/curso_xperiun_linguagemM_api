@@ -1,0 +1,48 @@
+table '01_Try Otherwise'
+	lineageTag: 4fd5503e-94e6-4bb5-98dc-076d90308463
+
+	column Data
+		dataType: string
+		lineageTag: b6800128-cd2a-42f0-b946-63c555c1cb37
+		summarizeBy: none
+		sourceColumn: Data
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Mês Número'
+		dataType: string
+		lineageTag: 9edeebab-7f39-4fcf-9329-54e2768ffd1e
+		summarizeBy: none
+		sourceColumn: Mês Número
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '01_Try Otherwise' = m
+		mode: import
+		queryGroup: Conceito
+		source = ```
+				let
+				    Exemplo = #table(
+				        {"Data"},
+				        {
+				            {#date(2021,1,1)},
+				            {"2"},
+				            {"DEZEMBRO"},
+				            {1}
+				        }
+				    ),
+				    TratandoErros = 
+				        Table.AddColumn(
+				            Exemplo,
+				            "Mês Número",
+				            each try Date.Month([Data]) otherwise null
+				        )
+				
+				in
+				    TratandoErros
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,25 @@
+table '02_Loop While'
+	lineageTag: c345d517-96ec-4eea-a28f-f952a0ca1429
+
+	column '02_Loop While'
+		dataType: string
+		lineageTag: 8b1b159b-9c0d-4ba9-aeb1-1e8a6f900761
+		summarizeBy: none
+		sourceColumn: 02_Loop While
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '02_Loop While' = m
+		mode: import
+		queryGroup: Conceito
+		source =
+				List.Generate(
+				    ()=> 10, // Inicio
+				    each _ >= 1, // Condição de continuidade
+				    each _ - 1 // Iterador
+				)
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = List
+

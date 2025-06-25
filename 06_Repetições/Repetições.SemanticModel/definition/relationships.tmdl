@@ -1,0 +1,20 @@
+relationship b008a2d3-a21f-416e-851c-c5edd2f5036e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: '03_Listar Datas'.Datas
+	toColumn: LocalDateTable_17e46740-44ed-4250-962e-09b485aa8420.Date
+
+relationship c103baf4-c9e4-44f4-b63b-856fe4b66b59
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 05_Alocação.DATA_INICIO
+	toColumn: LocalDateTable_47e62e71-7abd-4530-9979-1fa50ac115f5.Date
+
+relationship 0466bb3c-01ca-4005-b61c-fe03c99b1672
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 05_Alocação.DATA_FIM
+	toColumn: LocalDateTable_035140d6-5bb2-4046-8001-a33089549fdd.Date
+
+relationship 7cee524e-75b2-42fb-95bf-b9731848f5c0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 05_Alocação.Alocacao
+	toColumn: LocalDateTable_970cf2ec-cc74-49c6-a4f3-6b62a557b0f2.Date
+

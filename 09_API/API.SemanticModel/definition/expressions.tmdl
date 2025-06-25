@@ -1,0 +1,27 @@
+expression fxRequisicao =
+		(endpoint as text, pagina as number) =>
+		let
+		    api_key = "Aky3j52n5VSpP1XQDrcd",
+		    request = Web.Contents(
+		                    "https://the-one-api.dev",
+		                    [
+		                        RelativePath = "v2/"&endpoint,
+		                        Headers = [
+		                            Authorization = "Bearer "&api_key
+		                        ],
+		                        Query = [
+		                            limit = Number.ToText(100),
+		                            page = Number.ToText(pagina)
+		                        ]
+		                    ]
+		    ),
+		    json = Json.Document(request),
+		    docs = json[docs]
+		in
+		    docs
+	lineageTag: 3f4ee1be-db4f-4039-8734-426aabab2cab
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Function
+

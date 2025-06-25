@@ -1,0 +1,41 @@
+table '02_Funções Registro'
+	lineageTag: 54fc446a-8929-47da-88f6-6be20065ffcd
+
+	column Name
+		dataType: string
+		lineageTag: 6a86f599-bd17-4699-ac13-0b7a179f7883
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Value
+		dataType: string
+		lineageTag: 2bb908d2-a3cb-4973-8195-94a2818b9bf0
+		summarizeBy: none
+		sourceColumn: Value
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '02_Funções Registro' = m
+		mode: import
+		queryGroup: 'Principais Funções'
+		source =
+				let
+				    Registro = [
+				    Registro = [nome = "Smaley", genero = "M", idade = 33, cargo = "Analista", salario = "3500"],
+				    NomesCampos = Record.FieldNames(Registro),
+				    VerificaCampos = Record.HasFields(Registro, "nome"), // para mais campos: Record.HasFields(Registro, {"nome", "idade"})
+				    ConverteCamposLista = Record.ToList(Registro),
+				    Campo = "nome",
+				    ValorCampo = Record.Field(Registro, Campo), // ~= Registro[nome]
+				    Campo2 = "empresa",
+				    ValorCampo2 = Record.FieldOrDefault(Registro, Campo2, "Não Encontrado") // ~= Registro[empresa]?
+				]
+				in
+				    Registro
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Record
+

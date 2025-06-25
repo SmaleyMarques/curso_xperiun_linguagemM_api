@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Condições"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a348a2d2-2619-4fc9-8991-bd0167a2d49d"
+  }
+}

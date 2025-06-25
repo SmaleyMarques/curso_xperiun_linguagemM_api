@@ -1,0 +1,69 @@
+table 05_Each
+	lineageTag: a7c45d05-6d63-4cdf-bb11-688d972bffc0
+
+	column OrderID
+		dataType: double
+		lineageTag: 63301cc8-2bd3-481f-b42b-d47a2cacc1ae
+		summarizeBy: count
+		sourceColumn: OrderID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CustomerID
+		dataType: double
+		lineageTag: a07581db-4904-4793-8be7-05dddeb5fd60
+		summarizeBy: count
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Item
+		dataType: string
+		lineageTag: dd91344f-bef7-421b-8b5c-6d49abe30343
+		summarizeBy: none
+		sourceColumn: Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column Price
+		dataType: double
+		lineageTag: aff8f9b0-508d-445e-9a87-6b4362a40d62
+		summarizeBy: sum
+		sourceColumn: Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Price > 20'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: cad0cd7e-cf83-4539-a617-6860a3725b63
+		summarizeBy: none
+		sourceColumn: Price > 20
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 05_Each = m
+		mode: import
+		queryGroup: 'Outros Conceitos'
+		source = ```
+				let
+				    /* each = Palavra reservada para função temporário iteradora */
+				    
+				    Exemplo_each = Table.AddColumn(#"04_Funções Tabela"[ConverteRegistros], "Price > 20", each [Price] > 20, type logical)
+				    // Exemplo_each = Table.AddColumn(#"Funções Tabela"[ConverteRegistros], "Price > 20", each _[Price] > 20, type logical)
+				    // Exemplo_each = Table.AddColumn(#"Funções Tabela"[ConverteRegistros], "Price > 20", (_) => _[Price] > 20, type logical)
+				    // Exemplo_each = Table.AddColumn(#"Funções Tabela"[ConverteRegistros], "Price > 20", (cadaLinha) => cadaLinha[Price] > 20, type logical)
+				in
+				    Exemplo_each
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -14,7 +14,7 @@ queryGroup Tipos_Estruturados
 
 	annotation PBI_QueryGroupOrder = 1
 
-annotation PBI_QueryOrder = ["Texto","Número","Temporal","Lógico","Nulo","Binário","Registro","Lista","Tabela"]
+annotation PBI_QueryOrder = ["01_Texto","02_Número","03_Temporal","04_Lógico","05_Nulo","06_Binário","07_Registro","08_Lista","09_Tabela"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
@@ -22,15 +22,15 @@ annotation PBIDesktopVersion = 2.144.679.0 (25.06)+ef40146207b86a826d1c72a7727a7
 
 annotation PBI_ProTooling = ["DevMode"]
 
-ref table Texto
-ref table Número
-ref table Temporal
-ref table Lógico
-ref table Nulo
-ref table Binário
-ref table Registro
-ref table Lista
-ref table Tabela
+ref table 01_Texto
+ref table 02_Número
+ref table 03_Temporal
+ref table 04_Lógico
+ref table 05_Nulo
+ref table 06_Binário
+ref table 07_Registro
+ref table 08_Lista
+ref table 09_Tabela
 
 ref cultureInfo pt-BR
 

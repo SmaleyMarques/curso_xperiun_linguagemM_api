@@ -1,0 +1,30 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup Conceito
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Planejando Tratamento'
+
+	annotation PBI_QueryGroupOrder = 1
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBIDesktopVersion = 2.144.878.0 (25.06)+9cca29236de5114792f4d7188221f91ad4a5cc50
+
+annotation PBI_QueryOrder = ["01_Try Otherwise","02_Try","fxGeradorErros","03_Tratando Multiplos Erros"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table '01_Try Otherwise'
+ref table 02_Try
+ref table '03_Tratando Multiplos Erros'
+
+ref cultureInfo pt-BR
+

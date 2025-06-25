@@ -1,0 +1,26 @@
+table '01_Web Contents'
+	lineageTag: 16701dcf-3fa0-4cf4-8f27-f69a35d8e6bb
+
+	column Column1
+		dataType: string
+		lineageTag: b21167e0-bdc3-4b2d-9a89-bc856e86c4e7
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '01_Web Contents' = m
+		mode: import
+		queryGroup: 'Web Contents'
+		source =
+				let
+				    linkCompleto = "https://www.random.org/integers/?num=10&min=1&max=100&col=1&base=10&format=plain&rnd=new",
+				    conteudo = Web.Contents(linkCompleto),
+				    csv = Csv.Document(conteudo,[Delimiter=";", Columns=1, Encoding=65001, QuoteStyle=QuoteStyle.None])
+				in
+				    csv
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

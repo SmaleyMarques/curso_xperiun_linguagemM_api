@@ -1,0 +1,118 @@
+table '03_Transformação Condicional'
+	lineageTag: eac8f663-1634-41cd-8861-8d0fc9ec8eba
+
+	column Nome
+		dataType: string
+		lineageTag: e7c33cc7-d946-479b-bf8a-dc921e98fa16
+		summarizeBy: none
+		sourceColumn: Nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nascimento
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c3f1853e-06d3-4e36-a032-9fd2e53ae33b
+		summarizeBy: none
+		sourceColumn: Nascimento
+
+		variation Variation
+			isDefault
+			relationship: 11f4a723-50ea-4afb-b81c-7312284a92d4
+			defaultHierarchy: LocalDateTable_dcdea2d0-af23-4fdf-a497-5b1c84d73e6d.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Carro
+		dataType: string
+		lineageTag: c2c45053-16e4-40bc-9b2f-1c177a102115
+		summarizeBy: none
+		sourceColumn: Carro
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cidade
+		dataType: string
+		lineageTag: 21148b79-2d91-4b79-9cb9-7cfb6921e35e
+		summarizeBy: none
+		sourceColumn: Cidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trabalha
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b03b634d-212f-4e57-a2c6-51f49dca2bf4
+		summarizeBy: none
+		sourceColumn: Trabalha
+
+		annotation SummarizationSetBy = Automatic
+
+	column Estuda
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1d2525f8-33cd-4007-9351-55aea8498040
+		summarizeBy: none
+		sourceColumn: Estuda
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Joga Video-Game'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 827afb1c-ad41-44b4-bd6c-ae98ebc2bc28
+		summarizeBy: none
+		sourceColumn: Joga Video-Game
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Vai à Festas'
+		dataType: string
+		lineageTag: 879bc2f9-bc0f-40d4-b1b3-ac1f526f895e
+		summarizeBy: none
+		sourceColumn: Vai à Festas
+
+		annotation SummarizationSetBy = Automatic
+
+	column Salário
+		dataType: double
+		lineageTag: 580095a3-9a85-497d-ace0-a2e9697b09ad
+		summarizeBy: sum
+		sourceColumn: Salário
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Salário Maior 5Mil?'
+		dataType: string
+		lineageTag: 07a595ee-2687-416b-9263-1557cada3068
+		summarizeBy: none
+		sourceColumn: Salário Maior 5Mil?
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '03_Transformação Condicional' = m
+		mode: import
+		queryGroup: 'Principais Aplicações'
+		source =
+				let
+				    Fonte = #"02_Coluna Condicional",
+				    ColunaTransformada = Table.TransformColumns(
+				                            Fonte,
+				                                {
+				                                    {"Trabalha", each if _ = "SIM" then Text.Replace(_,"SIM", "true") else Text.Replace(_,"NÃO", "false")},
+				                                    {"Estuda", each if _ = "SIM" then Text.Replace(_,"SIM", "true") else Text.Replace(_,"NÃO", "false")},
+				                                    {"Joga Video-Game", each if _ = "SIM" then Text.Replace(_,"SIM", "true") else Text.Replace(_,"NÃO", "false")}
+				                                }
+				    ),
+				    Tipo = Table.TransformColumnTypes(ColunaTransformada,{{"Joga Video-Game", type logical}, {"Trabalha", type logical}, {"Estuda", type logical}})
+				in
+				    Tipo
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

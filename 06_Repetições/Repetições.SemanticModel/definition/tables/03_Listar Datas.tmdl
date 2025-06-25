@@ -1,0 +1,39 @@
+table '03_Listar Datas'
+	lineageTag: 8457e457-02c0-4c41-b800-7dacf374c652
+
+	column Datas
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f7c00612-9c23-42be-97a1-5d27423eda0f
+		summarizeBy: none
+		sourceColumn: Datas
+
+		variation Variation
+			isDefault
+			relationship: b008a2d3-a21f-416e-851c-c5edd2f5036e
+			defaultHierarchy: LocalDateTable_17e46740-44ed-4250-962e-09b485aa8420.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition '03_Listar Datas' = m
+		mode: import
+		queryGroup: 'Aplicações Praticas'
+		source = ```
+				let
+				    Data_inicial = #date(2025,1,1),
+				    Data_final = #date(2025,12,31),
+				    Datas = List.Generate(
+				    ()=> Data_inicial, 
+				    each _ <= Data_final, 
+				    each _ + #duration(1,0,0,0)
+				    )
+				in
+				    Table.FromList(Datas, Splitter.SplitByNothing(),type table [Datas = nullable date])
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,51 @@
+expression fxSubstituicao = ```
+		(frase as text, substituirEssas as list, porEssas as list) =>
+		let
+		    // frase = "O sol brilha alto no céu azul.",
+		    // substituirEssas = {"azul", "alto", "verde", "amarelas", "através das"},
+		    // porEssas = {"avermelhado", "baixo", "alta", "secas", "por entre as"},
+		    contagemMaxima = List.Count(porEssas),
+		    substituicao = 
+		        List.Generate(
+		            () => [contagem = 0, texto= frase],
+		            each [contagem] <= contagemMaxima,
+		            each [contagem = [contagem] + 1, texto = Text.Replace([texto], substituirEssas{[contagem]}, porEssas{[contagem]})],
+		            each [texto]
+		        ),
+		    fraseSubistituida = List.Last(substituicao)
+		in
+		    fraseSubistituida
+		```
+	lineageTag: 4a360222-05af-4f3b-9fbb-96305a7725fc
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Function
+
+expression fxAlocacao =
+		(alocacao as record) =>
+		let
+		    // caminho = "C:\Users\Smaley\Documents\Smaley\Cursos\Xperiun\APIs e Linguagem M Avançado\data\Alocacao.xlsx",
+		    // excel = Excel.Workbook(File.Contents(caminho), true, false),
+		    // tabela = excel{[Item="Alocacao"]}[Data],
+		    // alocacao = tabela{0},
+		    diasSemana = {"DOMINGO", "SEGUNDA", "TERCA", "QUARTA", "QUINTA", "SEXTA", "SABADO"},
+		    listaAlocacoes = List.Transform({0..6}, each [diaSemana = _ , alocado = Record.Field(alocacao, diasSemana{_})]),
+		    semanaAlocacao = List.Transform(List.Select(listaAlocacoes, each _[alocado]), each _[diaSemana]),
+		    listarDatas =
+		        List.Generate(
+		            ()=> alocacao[DATA_INICIO],
+		            each _ <= alocacao[DATA_FIM],
+		            each _ + #duration(1,0,0,0),
+		            each if List.Contains(semanaAlocacao, Date.DayOfWeek(_)) then _ else null
+		        ),
+		    datasAlocacao = List.Select(listarDatas, each _ <> null)
+		
+		in
+		    datasAlocacao
+	lineageTag: f7792960-83d0-42f9-8402-d7124aa537e4
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Function
+

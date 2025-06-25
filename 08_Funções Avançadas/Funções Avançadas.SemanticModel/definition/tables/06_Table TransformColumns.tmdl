@@ -1,0 +1,109 @@
+table '06_Table TransformColumns'
+	lineageTag: 8c866ef0-3612-4c38-9a17-28387b2d1f3d
+
+	column Nome
+		dataType: string
+		lineageTag: ac1ef780-2202-4e92-8697-1fd508f2f38c
+		summarizeBy: none
+		sourceColumn: Nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nascimento
+		dataType: string
+		lineageTag: 43d7028b-4085-444e-b2fa-f0c5a5166a4e
+		summarizeBy: none
+		sourceColumn: Nascimento
+
+		annotation SummarizationSetBy = Automatic
+
+	column Carro
+		dataType: string
+		lineageTag: 4774a6d1-e137-408a-89e8-64153cf49601
+		summarizeBy: none
+		sourceColumn: Carro
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cidade
+		dataType: string
+		lineageTag: b60da1c1-d02b-4bcc-b2b0-3eaa76616fb4
+		summarizeBy: none
+		sourceColumn: Cidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trabalha
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 69b1aa73-7c49-4393-8448-c84febfc164d
+		summarizeBy: none
+		sourceColumn: Trabalha
+
+		annotation SummarizationSetBy = Automatic
+
+	column Estuda
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 01002647-8999-4183-b77a-ebbb5f2c2985
+		summarizeBy: none
+		sourceColumn: Estuda
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Joga Video-Game'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c61276c5-2a42-428d-b762-6a970908360f
+		summarizeBy: none
+		sourceColumn: Joga Video-Game
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Vai à Festas'
+		dataType: string
+		lineageTag: 8c787e01-9666-4431-aad7-24d002d68beb
+		summarizeBy: none
+		sourceColumn: Vai à Festas
+
+		annotation SummarizationSetBy = Automatic
+
+	column Salário
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 96b06cfc-2b33-48c9-a3ff-09a3250d7342
+		summarizeBy: sum
+		sourceColumn: Salário
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	partition '06_Table TransformColumns' = m
+		mode: import
+		queryGroup: 'Table TransformColumns'
+		source = ```
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Smaley\Documents\Smaley\Cursos\Xperiun\APIs e Linguagem M Avançado\data\PowerQuery.csv"),[Delimiter=",", Columns=9, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    Cabecalho = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Tranformacao =
+				        Table.TransformColumns(
+				            Cabecalho,
+				            {
+				                {"Trabalha", each Logical.FromText(if _ = "SIM" then Text.Replace(_,"SIM", "true") else Text.Replace(_,"NÃO","false")), type logical},
+				                {"Estuda", each Logical.FromText(if _ = "SIM" then Text.Replace(_,"SIM", "true") else Text.Replace(_,"NÃO","false")), type logical},
+				                {"Joga Video-Game", each Logical.FromText(if _ = "SIM" then Text.Replace(_,"SIM", "true") else Text.Replace(_,"NÃO","false")), type logical}
+				            }, 
+				            // Transformação defaut - Aplicado sobre toda a tabela
+				            each if Text.Contains(_,"$") then Text.Replace(_,"$","") else Replacer.ReplaceValue(_,"",null) 
+				        ),
+				    AlteraTipo = Table.TransformColumnTypes(Tranformacao,{{"Trabalha", type logical}, {"Estuda", type logical}, {"Joga Video-Game", type logical}, {"Nome", type text}, {"Carro", type text}, {"Cidade", type text}, {"Vai à Festas", type text}, {"Salário", Currency.Type}}, "en-US")
+				
+				in
+				    AlteraTipo
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

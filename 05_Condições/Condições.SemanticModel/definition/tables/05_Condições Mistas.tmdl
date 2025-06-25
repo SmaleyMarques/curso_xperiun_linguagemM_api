@@ -1,0 +1,84 @@
+table '05_Condições Mistas'
+	lineageTag: c18da3d4-0728-4901-b67c-14f2399645b9
+
+	column Ano
+		dataType: int64
+		formatString: 0
+		lineageTag: a4d48034-4e34-4a79-a6c8-70e7f20f68c0
+		summarizeBy: sum
+		sourceColumn: Ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column Região
+		dataType: string
+		lineageTag: 6e1592e7-7af7-491e-b5f8-15c70e506132
+		summarizeBy: none
+		sourceColumn: Região
+
+		annotation SummarizationSetBy = Automatic
+
+	column UF
+		dataType: string
+		lineageTag: b255b42b-a52c-416c-a812-775c46ed5d37
+		summarizeBy: none
+		sourceColumn: UF
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cidade
+		dataType: string
+		lineageTag: e8849057-d9dd-4086-b146-b421c717975a
+		summarizeBy: none
+		sourceColumn: Cidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mês
+		dataType: string
+		lineageTag: 1f82d8af-97e4-4718-883d-5c70b93b54c2
+		summarizeBy: none
+		sourceColumn: Mês
+
+		annotation SummarizationSetBy = Automatic
+
+	column Faturamento
+		dataType: int64
+		formatString: 0
+		lineageTag: 64a321c8-8c88-4ed9-be20-a877e11c0e7d
+		summarizeBy: sum
+		sourceColumn: Faturamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantidade
+		dataType: int64
+		formatString: 0
+		lineageTag: a3a43dea-b515-4add-9d9b-1a3f01e646ae
+		summarizeBy: sum
+		sourceColumn: Quantidade
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '05_Condições Mistas' = m
+		mode: import
+		queryGroup: 'Principais Aplicações'
+		source =
+				let
+				    Fonte = Folder.Files("C:\Users\Smaley\Documents\Smaley\Cursos\Xperiun\APIs e Linguagem M Avançado\data\Base de Dados Mista")[[Content], [Extension]],
+				    ETL = Table.AddColumn(
+				                Fonte,
+				                "ETL",
+				                each if [Extension] = ".csv" then read_csv([Content])
+				                else if [Extension] = ".xlsx" then read_excel([Content])
+				                else null
+				    ),
+				    Explodindo = Table.ExpandTableColumn(ETL[[ETL]], "ETL", {"Ano", "Região", "UF", "Cidade", "Mês", "Faturamento", "Quantidade"}, {"Ano", "Região", "UF", "Cidade", "Mês", "Faturamento", "Quantidade"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Explodindo,{{"Ano", Int64.Type}, {"Região", type text}, {"UF", type text}, {"Cidade", type text}, {"Mês", type text}, {"Faturamento", Int64.Type}, {"Quantidade", Int64.Type}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

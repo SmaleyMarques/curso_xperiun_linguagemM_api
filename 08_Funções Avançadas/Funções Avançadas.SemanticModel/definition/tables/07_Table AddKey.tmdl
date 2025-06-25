@@ -1,0 +1,28 @@
+table '07_Table AddKey'
+	lineageTag: 01fb15d8-5301-4980-9d44-15fe5b6c7f6a
+
+	column '07_Table AddKey'
+		dataType: string
+		lineageTag: 4b7a01b9-e73c-44f3-9bee-643cea63d6e7
+		summarizeBy: none
+		sourceColumn: 07_Table AddKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '07_Table AddKey' = m
+		mode: import
+		queryGroup: 'Table AddKey'
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\Users\Smaley\Documents\Smaley\Cursos\Xperiun\APIs e Linguagem M Avançado\data\Amigos.xlsx"), true),
+				    Tabela = Fonte{[Item="Clientes",Kind="Sheet"]}[Data],
+				    adicinoandoChave = Table.AddKey(Tabela,{"_id"}, true),
+				    removendoDuplicatas = Table.Distinct(adicinoandoChave),
+				    chavePrimaria = Table.Keys(removendoDuplicatas){0}[Columns]
+				in
+				    chavePrimaria
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = List
+

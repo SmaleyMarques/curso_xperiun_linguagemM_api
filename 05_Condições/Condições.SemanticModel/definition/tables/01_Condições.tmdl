@@ -1,0 +1,26 @@
+table 01_Condições
+	lineageTag: 9c5e4b9c-721c-4106-b9c0-4b2e81bc53bd
+
+	column 01_Condições
+		dataType: string
+		lineageTag: cc257aeb-dedd-4b4b-bcb5-8be426023fd5
+		summarizeBy: none
+		sourceColumn: 01_Condições
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 01_Condições = m
+		mode: import
+		queryGroup: Conceito
+		source =
+				let
+				    // estrutura obrigatória: if - then - else
+				
+				    Fonte = if 10 > 1 then "10 é maior que 1" else "10 é menor que 1"
+				in
+				    Fonte
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Text
+

@@ -1,0 +1,24 @@
+expression read_csv =
+		(conteudo as binary) =>
+		let
+		    read_csv = Table.PromoteHeaders(Csv.Document(conteudo,[Delimiter=";", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.None]), [PromoteAllScalars=true])
+		in
+		    read_csv
+	lineageTag: a1981ba5-50f1-43de-a49c-1efcbcbce0c7
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Function
+
+expression read_excel =
+		(conteudo as binary) =>
+		let
+		    read_excel = Excel.Workbook(conteudo, true,false){0}[Data]
+		in
+		    read_excel
+	lineageTag: c1bcacbe-7907-414d-994f-39f8ca2223e2
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Function
+

@@ -1,0 +1,12 @@
+expression fxGeradorErros =
+		(valor as any)=>
+		    if valor is text then error "001 - Texto" else
+		    if valor is date then error "002 - Data" else
+		    if valor is number then error "003 - Número" else
+		    error "004 - Tipo não listado"
+	lineageTag: bf153f07-8be3-4d44-8de4-89640dfb41cc
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Function
+
